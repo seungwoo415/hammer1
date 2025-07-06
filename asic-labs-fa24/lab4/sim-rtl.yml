@@ -2,7 +2,9 @@
 sim.inputs:
   input_files:
     - "src/fine_sr.v"
-    - "src/fine_sr_tb.v"
+    - "src/coarse_sr.v"
+    - "src/top_level_sr.v"
+    - "src/top_level_sr_tb.v"
   timescale: "1ns/10ps"
   options:
     - "-notice"
@@ -11,7 +13,7 @@ sim.inputs:
     - "+v2k"
     - "-sverilog"
     - "-debug"
-  top_module: "fine_sr"
-  tb_name: "fine_sr_tb"
+  top_module: "top_level_sr"
+  tb_name: "top_level_sr_tb"
   defines: 
     - "CLOCK_PERIOD=5.00"

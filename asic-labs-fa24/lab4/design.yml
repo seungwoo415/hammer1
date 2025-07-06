@@ -2,6 +2,8 @@
 gcd.clockPeriod: &CLK_PERIOD "5ns"
 gcd.verilogSrc: &VERILOG_SRC
   - "src/fine_sr.v"
+  - "src/coarse_sr.v" 
+  - "src/top_level_sr.v" 
 
 # Specify clock signals
 vlsi.inputs.clocks: [
@@ -10,12 +12,12 @@ vlsi.inputs.clocks: [
 
 # Synthesis Constraints
 synthesis.inputs:
-  top_module: "fine_sr"
+  top_module: "top_level_sr"
   input_files: *VERILOG_SRC
 
 # Placement Constraints
 vlsi.inputs.placement_constraints:
-  - path: "fine_sr"
+  - path: "top_level_sr"
     type: "toplevel"
     x: 0
     y: 0
@@ -26,12 +28,6 @@ vlsi.inputs.placement_constraints:
       right: 10
       top: 10
       bottom: 10
-  - path: "gcd_coprocessor/GCDdpath0"
-    type: "placement"
-    x: 200
-    y: 200
-    width: 200
-    height: 200
 
 # Pin placement constraints
 vlsi.inputs.pin_mode: generated

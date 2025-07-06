@@ -4,17 +4,17 @@ vlsi.core.technology: hammer.technology.sky130
 technology.sky130:
   sky130A: "/home/ff/eecs151/fa24/pdk/sky130A"  
   sram22_sky130_macros: "/home/ff/eecs151/fa24/sky130_srams/sram22_sky130_macros"  
-  sky130_cds:    "/home/ff/eecs151/fa24/pdk/sky130_release_0.0.4"
-  sky130_scl: "/home/ff/eecs151/fa24/pdk/sky130_scl_9T_0.0.5"
-  stdcell_library: "sky130_scl"
+  #sky130_cds:    "/home/ff/eecs151/fa24/pdk/sky130_release_0.0.4"
+  #sky130_scl: "/home/ff/eecs151/fa24/pdk/sky130_scl_9T_0.0.5"
+  #stdcell_library: "sky130_scl"
 
 # for sky130_scl
-technology.core.stackup: "sky130_scl"
-#technology.core.stackup: "sky130_fd_sc_hd"
-vlsi.technology.placement_site: "CoreSite"
+#technology.core.stackup: "sky130_scl"
+technology.core.stackup: "sky130_fd_sc_hd"
+#vlsi.technology.placement_site: "CoreSite"
 vlsi.technology.routing_layers: [2, 5]
 
-vlsi.core.max_threads: 4
+vlsi.core.max_threads: 10
 
 # General Hammer Inputs
 
@@ -25,7 +25,7 @@ vlsi.inputs.power_spec_mode: "auto"
 vlsi.inputs.power_spec_type: "cpf"
 
 vlsi.inputs.supplies.power: [
-  {name: "VDD", voltage: "1.8" , pins: ["vcc", "vdd", "VDD"]}
+  {name: "VDD", voltage: "1.8" , pins: ["vdd", "VDD"]}
 ]
 vlsi.inputs.supplies.ground: [
   {name: "VSS", pins: ["vss", "VSS"]}
@@ -36,6 +36,10 @@ vlsi.inputs.mmmc_corners: [
   {name: "ss_100C_1v60", type: "setup", voltage: "1.60 V", temp: "100 C"},
   {name: "ff_n40C_1v95", type: "hold", voltage: "1.95 V", temp: "-40 C"}
 ]
+
+special_cells.cell_type: "endcap"
+special_cells.name: "sky130_fd_sc_hd__tapvpwrvgnd_1"
+
 
 # SRAM Compiler compiler options
 vlsi.core.sram_generator_tool: "hammer.technology.sky130.sram_compiler"
