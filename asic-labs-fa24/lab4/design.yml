@@ -1,7 +1,7 @@
 # Specify Global Variables
 gcd.clockPeriod: &CLK_PERIOD "5ns"
 gcd.verilogSrc: &VERILOG_SRC
-  - "src/DigitalLDOLogic.v"
+  - "src/fine_sr.v"
 
 # Specify clock signals
 vlsi.inputs.clocks: [
@@ -10,22 +10,28 @@ vlsi.inputs.clocks: [
 
 # Synthesis Constraints
 synthesis.inputs:
-  top_module: "DigitalLDOLogic"
+  top_module: "fine_sr"
   input_files: *VERILOG_SRC
 
 # Placement Constraints
 vlsi.inputs.placement_constraints:
-  - path: "DigitalLDOLogic"
+  - path: "fine_sr"
     type: "toplevel"
     x: 0
     y: 0
-    width: 200
-    height: 70
+    width: 600
+    height: 600
     margins:
       left: 10
       right: 10
       top: 10
       bottom: 10
+  - path: "gcd_coprocessor/GCDdpath0"
+    type: "placement"
+    x: 200
+    y: 200
+    width: 200
+    height: 200
 
 # Pin placement constraints
 vlsi.inputs.pin_mode: generated
@@ -33,4 +39,3 @@ vlsi.inputs.pin.generate_mode: semi_auto
 vlsi.inputs.pin.assignments: [
   {pins: "*", layers: ["met2", "met4"], side: "bottom"}
 ]
-
